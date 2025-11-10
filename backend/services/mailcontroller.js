@@ -7,7 +7,7 @@ import crypto from "crypto";
 
 dotenv.config();
 
-export class MailService {
+export class MailController {
   constructor() {
     this.transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
@@ -140,3 +140,5 @@ export class MailService {
     }
   }
 }
+
+export { MailController as MailService };

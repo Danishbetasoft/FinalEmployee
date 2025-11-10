@@ -1,8 +1,8 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { authRouter } from './routes/auth.js';
-import { employeeRouter } from './routes/employee.js';
+import { authRouter } from './routes/auth';
+import { employeeRouter } from './routes/employee';
 import mailerRoutes from "./routes/mail.js";
 import trackerRoutes from "./routes/track.js";
 import 'reflect-metadata';
@@ -15,14 +15,12 @@ const app = express();
 
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
 
 app.use(express.json());
 
-async function seedEmployees() {
+async function seedEmployees(){
   const employeeRepository = AppDataSource.getRepository(Employee);
   const tableExists = await AppDataSource.query(
     "SHOW TABLES LIKE 'employee';"
@@ -56,7 +54,7 @@ async function seedEmployees() {
     console.error('Error seeding employee data:', error);
   }
 }
-async function startServer() {
+async function startServer(){
   try {
     await AppDataSource.initialize();
     console.log("Data Source initialized!");
@@ -76,3 +74,5 @@ async function startServer() {
   }
 }
 startServer();
+
+export default app;

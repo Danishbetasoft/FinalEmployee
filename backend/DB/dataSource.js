@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import { Employee } from '../models/employee.js';
 import { MailRecord } from '../models/mailRecords.js';
-import { MailEvent } from '../models/mailEvent.js';
-import { User } from '../models/user.js';
-import { Role } from '../models/role.js';
+import { MailEvent } from '../models/mailEvent';
+import { User } from '../models/user';
+import { Role } from '../models/role';
 
-dotenv.config('./backend/.env' );
+dotenv.config('./backend/.env');
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
@@ -19,7 +19,5 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
   entities: [Employee, MailRecord, MailEvent, User, Role],
-  migrations: ['./migrations/*.js']
-
-
+  migrations: ['./migrations/*.ts'],
 });

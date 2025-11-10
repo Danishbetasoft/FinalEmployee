@@ -21,4 +21,4 @@ try{
 }
 });
 
-export const publicRouter = router;
+export default router;

@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 
 import { apiClient } from '@/plugins/api';
+import router from '@/router';
 export const useAuthStore = defineStore('auth', {
   id: 'auth',
   state: () => ({
@@ -41,6 +42,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = null;
       this.token = null;
       this.role = null;
+      router.push('/login')
     },
   },
 });
